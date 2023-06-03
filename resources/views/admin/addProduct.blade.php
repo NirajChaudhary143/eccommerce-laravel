@@ -38,38 +38,64 @@
 
                           @endif
                           <!-- <p class="card-description"> Basic form layout </p> -->
-                          <form action="{{ route('add.product') }}" class="forms-sample" method="POST">
+                          <form action="{{ route('add.product') }}" class="forms-sample" method="POST" enctype="multipart/form-data">
                           @csrf
                             <div class="form-group">
-                              <label for="exampleInputCategory">Category Name</label>
-                              <input type="text" class="form-control" name="category" id="exampleInputCategory" style="color:white;background:black" placeholder="Fruits, Vegitables, etc...">
+                              <label for="">Title</label>
+                              <input type="text" class="form-control" name="product_title" id="" style="color:white;background:black" placeholder="">
                             </div>
-                            @error('category')
+                            @error('product_title')
                               <span class="alert alert-warning">
                                   {{$message}}
                                   </span><br><br>
                             @enderror
                             <div class="form-group">
-                              <label for="exampleInputCategory">Category Name</label>
-                              <input type="text" class="form-control" name="category" id="exampleInputCategory" style="color:white;background:black" placeholder="Fruits, Vegitables, etc...">
+                              <label for="">Product Description</label>
+                              <input type="text" class="form-control" name="description" id="" style="color:white;background:black" placeholder="">
                             </div>
-                            @error('category')
+                            @error('description')
                               <span class="alert alert-warning">
                                   {{$message}}
                                   </span><br><br>
                             @enderror
                             <div class="form-group">
-                              <label for="exampleInputCategory">Category Name</label>
-                              <input type="text" class="form-control" name="category" id="exampleInputCategory" style="color:white;background:black" placeholder="Fruits, Vegitables, etc...">
+                              <label for="">Product Quantity</label>
+                              <input type="number" class="form-control" name="product_quantity" id="" style="color:white;background:black" placeholder="">
                             </div>
-                            @error('category')
+                            @error('product_quantity')
                               <span class="alert alert-warning">
                                   {{$message}}
                                   </span><br><br>
                             @enderror
+                            <div class="form-group">
+                              <label for="">Discount Price</label>
+                              <input type="text" class="form-control" name="discount_price" id="" style="color:white;background:black" placeholder="">
+                            </div>
+                            @error('discount_price')
+                              <span class="alert alert-warning">
+                                  {{$message}}
+                                  </span><br><br>
+                            @enderror
+                            
+                            <div class="form-group">
+                                <label for="">Slect Category</label>
+                                <select class="form-control" id="" style="color:white" name="product_category">
+                                    @foreach($categories as $category)
+                                <option value="{{$category->category_name}}">{{ $category->category_name }}</option>
+                                <!-- <option>Female</option> -->
+                                     @endforeach
+                                </select>
+                               
+                            </div>
+                            <div class="form-group">
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Product Image</label>
+                                    <input class="form-control" type="file" id="formFile" name="image" placeholder="Choose Product Image">
+                                </div>
+                            </div>
                         
                           
-                            <button type="submit" class="btn btn-primary mr-2">Add Category</button>
+                            <button type="submit" class="btn btn-primary mr-2">Add Product</button>
                             <!-- <button class="btn btn-dark">Cancel</button> -->
                           </form>
                         </div>

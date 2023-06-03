@@ -19,8 +19,8 @@ return new class extends Migration
             $table->longText('product_description');
             $table->string('product_image');
             $table->string('product_price');
-            $table->string('product_quantity');
-            $table->string('discount_price');
+            $table->string('product_quantity')->nullable();
+            $table->string('discount_price')->nullable();
             // $table->string('product_image');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('category_id')->on('categories');

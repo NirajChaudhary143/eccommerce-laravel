@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -80,11 +81,14 @@ class AdminController extends Controller
 
 
     public function addProductForm()    {
-        return view('admin.addProduct');
+        // $products = Product::with('category')->get();
+        $categories= Category::all();
+        return view('admin.addProduct',compact('categories'));
     }
 
     public function addProduct(Request $request){
-        // echo "<pre>";
-        // print_r($request->toArray());
+
+        echo "<pre>";
+        print_r($request->toArray());
     }
 }
