@@ -20,16 +20,23 @@ use App\Http\Controllers\AdminController;
 // });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/redirect');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
+//    User Defined ROutes(by me)
+    Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
 Route::get('/',[HomeController::class,'userPage'])->name('user.page');
 Route::get('/view-category',[AdminController::class,'viewCategory'])->name('view.category');
 Route::post('/view-category',[AdminController::class,'addCategory'])->name('add.category');
+Route::get('/delete-category/{id}',[AdminController::class,'deleteCategory'])->name('delete.category');
+Route::get('/edit-category/{id}',[AdminController::class,'editCategory'])->name('edit.category');
+Route::post('/edit-category/{id}',[AdminController::class,'updateCategory'])->name('update.category');
+Route::get('/add-product',[AdminController::class,'addProductForm'])->name('add.product.form');
+Route::post('/add-product',[AdminController::class,'addProduct'])->name('add.product');
+});
+
 require __DIR__.'/auth.php';

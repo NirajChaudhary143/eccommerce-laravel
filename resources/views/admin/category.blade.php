@@ -19,11 +19,20 @@
                 
                   <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">Add Title</h4>
+                          <h4 class="card-title">Add Category</h4>
                           @if(session()->has('success'))
                           <span class="alert alert-success">
 
                             {{session('success')}}
+                            
+                          </span>
+                          <br><br>
+
+                          @endif
+                          @if(session()->has('fail'))
+                          <span class="alert alert-warning">
+
+                            {{session('fail')}}
                             
                           </span>
                           <br><br>
@@ -34,7 +43,7 @@
                           @csrf
                             <div class="form-group">
                               <label for="exampleInputCategory">Category Name</label>
-                              <input type="text" class="form-control" name="category" id="exampleInputCategory" placeholder="Fruits, Vegitables, etc...">
+                              <input type="text" class="form-control" name="category" id="exampleInputCategory" style="color:white;background:black" placeholder="Fruits, Vegitables, etc...">
                             </div>
                             @error('category')
                               <span class="alert alert-warning">
@@ -75,8 +84,8 @@
                                 <td>{{$category->category_id}}</td>
                                 <td>{{$category->category_name}}</td>
                                 <td>
-                                  <a href="#" class="btn btn-danger">Delete</a>
-                                  <a href="#" class="btn btn-success">Edit</a>
+                                  <a href="{{ route('delete.category',[ 'id' =>$category->category_id])}}" class="btn btn-danger">Delete</a>
+                                  <a href="{{ route('edit.category',[ 'id' =>$category->category_id])}}" class="btn btn-success">Edit</a>
                                 </td>
                                 <!-- <td><label class="badge badge-danger">Pending</label></td> -->
                               </tr>
