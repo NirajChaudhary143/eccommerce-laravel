@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +30,6 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
 Route::get('/',[HomeController::class,'userPage'])->name('user.page');
+Route::get('/view-category',[AdminController::class,'viewCategory'])->name('view.category');
+Route::post('/view-category',[AdminController::class,'addCategory'])->name('add.category');
 require __DIR__.'/auth.php';

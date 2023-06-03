@@ -1,12 +1,3 @@
-<footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
-          <!-- partial -->
-        </div>
-<!-- plugins:js -->
 <script src="{{ asset('admin') }}/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -26,6 +17,15 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('admin') }}/assets/js/dashboard.js"></script>
 
-    <!-- End custom js for this page -->
-  </body>
-</html>
+        <!--jQuery Datables -->
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+        $(document).ready(function(){
+            $('#category_table').DataTable();
+        });
+    </script>
+
+    <!-- End jQuery Table -->

@@ -20,4 +20,6 @@ class HomeController extends Controller
     public function userPage(){
         return view('home.userpage');
     }
+
+    
 }
