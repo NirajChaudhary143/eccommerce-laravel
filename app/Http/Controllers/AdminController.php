@@ -87,8 +87,106 @@ class AdminController extends Controller
     }
 
     public function addProduct(Request $request){
+        $request->validate([
+            'product_title'=>'required',
+            'description'=>'required',
+            'product_quantity'=>'required',
+            
+            'product_category'=>'required',
+            'product_price'=>'required',
+            'image'=>'required|image|mimes:jpeg,jpg,png',
+        ]);
 
-        echo "<pre>";
-        print_r($request->toArray());
+        $product = new Product();
+        $product->product_title=$request['product_title'];
+        $product->product_description=$request['description'];
+        $product->product_quantity=$request['product_quantity'];
+        $product->discount_price=$request['discount_price'];
+        $product->category_id=$request['product_category'];
+        $product->product_price=$request['product_price'];
+
+        // for Image
+
+        $fileName =time().'-niraj.'.$request->file('image')->getClientOriginalExtension();
+        $path = $request->file('image')->storeAs('products_image',$fileName,'public');
+        $product->product_image='/storage/'.$path;
+        
+        $result= $product->save();
+        if($result){
+            return redirect('/show-product');
+        }
+
+
+        // echo "<pre>";
+        // print_r($request->toArray());
+    }
+
+    public function showProduct(){
+        $products = Product::with('category')->get();
+        return view('admin.showProduct',compact('products'));
+    }
+
+    public function deleteProduct($id){
+        $product = Product::find($id);
+        if($product){
+            $product->delete();
+            return redirect('/show-product')->with('success','Product Deleted Succesfully.');
+        }
+        else{
+            return redirect('/show-product')->with('fail','The id you provided are not in database.');
+        }
+    }
+
+    public function editProduct($id){
+        $product = Product::where('product_id',$id)->first();
+        $categories = Category::all();
+        if($product){
+
+            return view('admin.editProduct',compact('product','categories'));
+        }
+        else{
+            return redirect('/show-product')->with('fail','The id you provided are not in database.');
+        }
+    }
+
+
+    public function updateProduct(Request $request,$id){
+        $request->validate([
+            'product_title'=>'required',
+            'description'=>'required',
+            'product_quantity'=>'required',
+            
+            'product_category'=>'required',
+            'product_price'=>'required',
+            
+        ]);
+
+        $product = Product::where('product_id',$id)->first();
+
+        
+        if($product){
+            if ($request->hasFile('image')) {
+                $fileName = time() . '-niraj.' . $request->file('image')->getClientOriginalExtension();
+                $path = $request->file('image')->storeAs('products_image', $fileName, 'public');
+                $product->product_image = '/storage/' . $path;
+            }
+            
+            // $fileName =time().'-niraj.'.$request->file('image')->getClientOriginalExtension();
+            // $path = $request->file('image')->storeAs('products_image',$fileName,'public');
+            // $product->product_image = '/storage/'.$path;
+
+            $product->product_title=$request['product_title'];
+            $product->product_description=$request['description'];
+            $product->product_quantity=$request['product_quantity'];
+            $product->discount_price=$request['discount_price'];
+            $product->category_id=$request['product_category'];
+            $product->product_price=$request['product_price'];
+            $product->save();
+            
+            return redirect('/show-product')->with('success','Product Updated Succesfully.');
+
+        }
+        // echo "<pre>";
+        // print_r($request->toArray());
     }
 }

@@ -27,5 +27,10 @@
             $('#category_table').DataTable();
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            $('#product_table').DataTable();
+        });
+    </script>
 
     <!-- End jQuery Table -->

@@ -38,11 +38,11 @@
 
                           @endif
                           <!-- <p class="card-description"> Basic form layout </p> -->
-                          <form action="{{ route('add.product') }}" class="forms-sample" method="POST" enctype="multipart/form-data">
+                          <form action="{{ route('update.product',['id'=>$product->product_id]) }}" class="forms-sample" method="POST" enctype="multipart/form-data">
                           @csrf
                             <div class="form-group">
                               <label for="">Title</label>
-                              <input type="text" class="form-control" name="product_title" id="" style="color:white;background:black" placeholder="" value="{{old('product_title')}}">
+                              <input type="text" class="form-control" name="product_title" id="" style="color:white;background:black" placeholder="" value="{{$product->product_title}}">
                             </div>
                             @error('product_title')
                               <span class="alert alert-warning">
@@ -51,7 +51,7 @@
                             @enderror
                             <div class="form-group">
                               <label for="">Product Description</label>
-                              <input type="text" class="form-control" name="description" id="" style="color:white;background:black" placeholder="" value="{{old('description')}}">
+                              <input type="text" class="form-control" name="description" id="" style="color:white;background:black" placeholder="" value="{{$product->product_description}}">
                             </div>
                             @error('description')
                               <span class="alert alert-warning">
@@ -60,7 +60,7 @@
                             @enderror
                             <div class="form-group">
                               <label for="">Product Quantity</label>
-                              <input type="number" class="form-control" name="product_quantity" id="" style="color:white;background:black" placeholder="" value="{{old('product_quantity')}}">
+                              <input type="number" class="form-control" name="product_quantity" id="" style="color:white;background:black" placeholder="" value="{{$product->product_quantity}}">
                             </div>
                             @error('product_quantity')
                               <span class="alert alert-warning">
@@ -69,7 +69,7 @@
                             @enderror
                             <div class="form-group">
                               <label for="">Discount Price</label>
-                              <input type="text" class="form-control" name="discount_price" id="" style="color:white;background:black" placeholder="" value="{{old('descount_price')}}">
+                              <input type="text" class="form-control" name="discount_price" id="" style="color:white;background:black" placeholder="" value="{{$product->discount_price}}">
                             </div>
                             @error('discount_price')
                               <span class="alert alert-warning">
@@ -78,7 +78,7 @@
                             @enderror
                             <div class="form-group">
                               <label for="">Product Price</label>
-                              <input type="text" class="form-control" name="product_price" id="" style="color:white;background:black" placeholder="" value="{{old('product_price')}}">
+                              <input type="text" class="form-control" name="product_price" id="" style="color:white;background:black" placeholder="" value="{{$product->product_price}}">
                             </div>
                             @error('product_price')
                               <span class="alert alert-warning">
@@ -88,9 +88,9 @@
                             
                             <div class="form-group">
                                 <label for="">Slect Category</label>
-                                <select class="form-control" id="" style="color:white" name="product_category" value="{{old('product_category')}}">
+                                <select class="form-control" id="" style="color:white" name="product_category" >
                                     @foreach($categories as $category)
-                                <option value="{{$category->category_id}}">{{ $category->category_name }}</option>
+                                <option value="{{$category->category_id}}" >{{ $category->category_name }}</option>
                                      @endforeach
                                 </select>
                                
@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Product Image</label>
-                                    <input class="form-control" type="file" id="formFile" name="image" placeholder="Choose Product Image" value="{{old('image')}}">
+                                    <input class="form-control" type="file" id="formFile" name="image" placeholder="Choose Product Image" >
                                 </div>
                             </div>
                             @error('image')
@@ -108,7 +108,7 @@
                             @enderror
                         
                           
-                            <button type="submit" class="btn btn-primary mr-2">Add Product</button>
+                            <button type="submit" class="btn btn-primary mr-2">Update Product</button>
                             <!-- <button class="btn btn-dark">Cancel</button> -->
                           </form>
                         </div>
