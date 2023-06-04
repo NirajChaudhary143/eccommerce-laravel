@@ -18,30 +18,31 @@
                   <div class="card-body">
                     <h4 class="card-title">Edit Category</h4>
                     <!-- <p class="card-description"> Basic form layout </p> -->
-                    <form class="forms-sample" action="{{ route('update.category',['id'=>$category->category_id])}}" method="POST">
-                        @csrf
-                            <!-- <div class="form-group">
-                              <label for="exampleInputCategory">Category ID</label>
-                              <input type="text" class="form-control" name="category_id" id="exampleInputCategory" style="color:white;background:black" value="{{$category->category_id}}">
-                            </div>
-                            @error('category_id')
-                              <span class="alert alert-warning">
-                                  {{$message}}
-                                  </span><br><br>
-                            @enderror -->
+                    <!-- <form class="forms-sample" action="{{ route('update.category',['id'=>$category->category_id])}}" method="POST"> -->
+                      {!! Form::open([
+                        'route' => ['update.category', 'id' => $category->category_id],
+                        'method'=>'post'
+                        ]) !!}
+                        
+                           
                             <div class="form-group">
-                              <label for="exampleInputCategory">Category Name</label>
-                              <input type="text" class="form-control" name="category_name" id="exampleInputCategory" style="color:white;background:black" value="{{$category->category_name}}">
+                            {!! Form::label('exampleInputCategory','Category Name') !!}
+                            {!! Form::text('category_name', $category->category_name, ['class'=>'form-control','id'=>'exampleInputCategory', 'style'=>'color:white;background:black']) !!}
+
                             </div>
+                          
                             @error('category_name')
                               <span class="alert alert-warning">
                                   {{$message}}
                                   </span><br><br>
                             @enderror
                       
-                      <button type="submit" class="btn btn-primary mr-2">Update</button>
+                      <!-- <button type="submit" class="btn btn-primary mr-2">Update</button> -->
+                      {!! Form::submit('Update',['class'=> 'btn btn-primary mr-2']) !!}
                       <!-- <button class="btn btn-dark">Cancel</button> -->
-                    </form>
+                    <!-- </form> -->
+
+                    {!! Form::close() !!}
                   </div>
                 </div>
             

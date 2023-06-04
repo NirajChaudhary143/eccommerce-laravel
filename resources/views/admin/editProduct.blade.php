@@ -38,11 +38,20 @@
 
                           @endif
                           <!-- <p class="card-description"> Basic form layout </p> -->
-                          <form action="{{ route('update.product',['id'=>$product->product_id]) }}" class="forms-sample" method="POST" enctype="multipart/form-data">
-                          @csrf
+                          <!-- <form action="{{ route('update.product',['id'=>$product->product_id]) }}" class="forms-sample" method="POST" enctype="multipart/form-data"> -->
+
+                          {!! Form::open([
+                              'route'=> ['update.product','id'=>$product->product_id],
+                              'class'=> 'forms-sample',
+                              'enctype'=>'multipart/form-data',
+                              'method'=>'post'
+                            ]) !!}
+                          
                             <div class="form-group">
-                              <label for="">Title</label>
-                              <input type="text" class="form-control" name="product_title" id="" style="color:white;background:black" placeholder="" value="{{$product->product_title}}">
+                              {!! Form::label('forProductTitle','Product Title') !!}
+                              {!! Form::text('product_title',$product->product_title,['class'=>'form-control','style'=>'color:white;background:black', 'id'=>'forProductTitle' ]) !!}
+                              <!-- <label for="">Title</label>
+                              <input type="text" class="form-control" name="product_title" id="" style="color:white;background:black" placeholder="" value="{{$product->product_title}}"> -->
                             </div>
                             @error('product_title')
                               <span class="alert alert-warning">
@@ -50,8 +59,9 @@
                                   </span><br><br>
                             @enderror
                             <div class="form-group">
-                              <label for="">Product Description</label>
-                              <input type="text" class="form-control" name="description" id="" style="color:white;background:black" placeholder="" value="{{$product->product_description}}">
+                              {!! Form::label('forDescription','Product Description') !!}
+                              {!! Form::text('description',$product->product_description,['class'=>'form-control', 'id'=>'forDescription', 'style'=> 'color:white;background:black']) !!}
+                             
                             </div>
                             @error('description')
                               <span class="alert alert-warning">
@@ -59,8 +69,10 @@
                                   </span><br><br>
                             @enderror
                             <div class="form-group">
-                              <label for="">Product Quantity</label>
-                              <input type="number" class="form-control" name="product_quantity" id="" style="color:white;background:black" placeholder="" value="{{$product->product_quantity}}">
+
+                            {!! Form::label('forProductQuantity','Product Quantity') !!}
+                            {!! Form::text('product_quantity',$product->product_quantity,['class'=>'form-control','id'=>'forProductQuantity','style'=>'color:white;background:black']) !!}
+                              
                             </div>
                             @error('product_quantity')
                               <span class="alert alert-warning">
@@ -68,8 +80,14 @@
                                   </span><br><br>
                             @enderror
                             <div class="form-group">
-                              <label for="">Discount Price</label>
-                              <input type="text" class="form-control" name="discount_price" id="" style="color:white;background:black" placeholder="" value="{{$product->discount_price}}">
+                              {!! Form::label('forDiscount','Discount Price') !!}
+                              {!! Form::text('discount_price',$product->discount_price, [
+                                'class'=>'form-control',
+                                'id'=>'forDiscount',
+                                'style'=>'color:white;background:black'
+                                ]) !!}
+                              <!-- <label for="">Discount Price</label>
+                              <input type="text" class="form-control" name="discount_price" id="" style="color:white;background:black" placeholder="" value="{{$product->discount_price}}"> -->
                             </div>
                             @error('discount_price')
                               <span class="alert alert-warning">
@@ -77,8 +95,13 @@
                                   </span><br><br>
                             @enderror
                             <div class="form-group">
-                              <label for="">Product Price</label>
-                              <input type="text" class="form-control" name="product_price" id="" style="color:white;background:black" placeholder="" value="{{$product->product_price}}">
+                            {!! Form::label('forProductPrice','Product Price') !!}
+                              {!! Form::text('product_price',$product->product_price, [
+                                'class'=>'form-control',
+                                'id'=>'forProductPrice',
+                                'style'=>'color:white;background:black'
+                                ]) !!}
+                             
                             </div>
                             @error('product_price')
                               <span class="alert alert-warning">
@@ -87,13 +110,9 @@
                             @enderror
                             
                             <div class="form-group">
-                                <label for="">Slect Category</label>
-                                <select class="form-control" id="" style="color:white" name="product_category" >
-                                    @foreach($categories as $category)
-                                <option value="{{$category->category_id}}" >{{ $category->category_name }}</option>
-                                     @endforeach
-                                </select>
-                               
+                              {!! Form::label('forSelectCategory','Select Category') !!}
+                              {!! Form::select('product_category',$categories->pluck('category_name','category_id'),null,['class'=>'form-control','id'=>'forSelectCategory','style'=>'color:white']) !!}
+                                                          
                             </div>
                             <div class="form-group">
                                 <div class="mb-3">
@@ -110,7 +129,7 @@
                           
                             <button type="submit" class="btn btn-primary mr-2">Update Product</button>
                             <!-- <button class="btn btn-dark">Cancel</button> -->
-                          </form>
+                          <!-- </form> -->{!! Form::close() !!}
                         </div>
                       
 
