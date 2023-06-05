@@ -111,7 +111,7 @@
                             
                             <div class="form-group">
                               {!! Form::label('forSelectCategory','Select Category') !!}
-                              {!! Form::select('product_category',$categories->pluck('category_name','category_id'),null,['class'=>'form-control','id'=>'forSelectCategory','style'=>'color:white']) !!}
+                              {!! Form::select('product_category',$categories->pluck('category_name','category_id'),$product->category_id,['class'=>'form-control','id'=>'forSelectCategory','style'=>'color:white']) !!}
                                                           
                             </div>
                             <div class="form-group">

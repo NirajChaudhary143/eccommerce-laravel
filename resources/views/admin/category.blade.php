@@ -39,11 +39,18 @@
 
                           @endif
                           <!-- <p class="card-description"> Basic form layout </p> -->
-                          <form action="{{ route('add.category') }}" class="forms-sample" method="POST">
-                          @csrf
+
+                          {!! Form::open([
+                            'route'=> 'add.category',
+                            'class'=>'forms-control',
+                            'method'=>'POST'
+                            ]) !!}
+                          <!-- <form action="{{ route('add.category') }}" class="forms-sample" method="POST"> -->
+                          
                             <div class="form-group">
-                              <label for="exampleInputCategory">Category Name</label>
-                              <input type="text" class="form-control" name="category" id="exampleInputCategory" style="color:white;background:black" placeholder="Fruits, Vegitables, etc...">
+                              {!! Form::label('','Category Name') !!}
+                              {!! Form::text('category','',['class'=>'form-control', 'style'=>'color:white;background:black','placeholder'=>'Fruits, Vegitables, etc...']) !!}
+                             
                             </div>
                             @error('category')
                               <span class="alert alert-warning">
@@ -51,10 +58,13 @@
                                   </span><br><br>
                             @enderror
                         
+
+                            {!! Form::submit('Add Category',['class'=>'btn btn-primary mr-2']) !!}
                           
-                            <button type="submit" class="btn btn-primary mr-2">Add Category</button>
+                            <!-- <button type="submit" class="btn btn-primary mr-2">Add Category</button> -->
                             <!-- <button class="btn btn-dark">Cancel</button> -->
-                          </form>
+                          <!-- </form> -->
+                          {!! Form::close() !!}
                         </div>
                       </div>
                     </div>

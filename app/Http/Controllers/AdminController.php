@@ -138,7 +138,7 @@ class AdminController extends Controller
     }
 
     public function editProduct($id){
-        $product = Product::where('product_id',$id)->first();
+        $product = Product::with('category')->where('product_id',$id)->first();
         $categories = Category::all();
         if($product){
 
