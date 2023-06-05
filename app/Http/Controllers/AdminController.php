@@ -9,8 +9,11 @@ use App\Models\Product;
 class AdminController extends Controller
 {
     public function viewCategory(){
+        $url =url('/edit-category');
+        $title = 'Add Category';
+        $submit ='Add Category';
         $categories = Category::all();
-        return view('admin.category',compact('categories'));
+        return view('admin.category',compact('categories','url','title','submit'));
     }
     public function addCategory(Request $request){
         $request->validate(
@@ -47,8 +50,11 @@ class AdminController extends Controller
 
     public function editCategory($id){
         $category = Category::find($id);
+        $url = url('/update-category').'/'.$id;
+        $title = 'Edit Category';
+        $submit= 'Update';
         if($category){
-            return view('admin.editCategory',compact('category'));
+            return view('admin.category')->with(compact('category','url','title','submit'));
         }
         else{
             return redirect('/view-category')->with('fail','The id which you want to edit is not on database');

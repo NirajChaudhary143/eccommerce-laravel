@@ -34,7 +34,7 @@ Route::get('/view-category',[AdminController::class,'viewCategory'])->name('view
 Route::post('/view-category',[AdminController::class,'addCategory'])->name('add.category');
 Route::get('/delete-category/{id}',[AdminController::class,'deleteCategory'])->name('delete.category');
 Route::get('/edit-category/{id}',[AdminController::class,'editCategory'])->name('edit.category');
-Route::post('/edit-category/{id}',[AdminController::class,'updateCategory'])->name('update.category');
+Route::post('/update-category/{id}',[AdminController::class,'updateCategory'])->name('update.category');
 Route::get('/add-product',[AdminController::class,'addProductForm'])->name('add.product.form');
 Route::post('/add-product',[AdminController::class,'addProduct'])->name('add.product');
 Route::get('/show-product',[AdminController::class,'showProduct'])->name('show.product');
