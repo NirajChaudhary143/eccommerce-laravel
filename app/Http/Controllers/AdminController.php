@@ -89,7 +89,9 @@ class AdminController extends Controller
     public function addProductForm()    {
         // $products = Product::with('category')->get();
         $categories= Category::all();
-        return view('admin.addProduct',compact('categories'));
+        $url = url('/add-product');
+        $title ='Add Product';
+        return view('admin.addProduct',compact('categories','url','title'));
     }
 
     public function addProduct(Request $request){
@@ -146,9 +148,11 @@ class AdminController extends Controller
     public function editProduct($id){
         $product = Product::with('category')->where('product_id',$id)->first();
         $categories = Category::all();
+        $url= url('/update-product').'/'.$id;
+        $title = 'Edit Product';
         if($product){
 
-            return view('admin.editProduct',compact('product','categories'));
+            return view('admin.addProduct',compact('product','categories','url','title'));
         }
         else{
             return redirect('/show-product')->with('fail','The id you provided are not in database.');
