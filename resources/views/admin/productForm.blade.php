@@ -87,9 +87,6 @@
                                   </span><br><br>
                             @enderror
                         
-                          
-                            <button type="submit" class="btn btn-primary mr-2">Update</button>
-                           
-
-                          
+                          {!! Form::submit($submit,['class'=>'btn btn-primary mr-2']) !!}
+                        
                         

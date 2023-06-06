@@ -9,11 +9,9 @@ use App\Models\Product;
 class AdminController extends Controller
 {
     public function viewCategory(){
-        $url =url('/edit-category');
-        $title = 'Add Category';
         $submit ='Add Category';
         $categories = Category::all();
-        return view('admin.category',compact('categories','url','title','submit'));
+        return view('admin.category',compact('categories','submit'));
     }
     public function addCategory(Request $request){
         $request->validate(
@@ -50,11 +48,9 @@ class AdminController extends Controller
 
     public function editCategory($id){
         $category = Category::find($id);
-        $url = url('/update-category').'/'.$id;
-        $title = 'Edit Category';
         $submit= 'Update';
         if($category){
-            return view('admin.category')->with(compact('category','url','title','submit'));
+            return view('admin.editCategory')->with(compact('category','submit'));
         }
         else{
             return redirect('/view-category')->with('fail','The id which you want to edit is not on database');
@@ -89,11 +85,8 @@ class AdminController extends Controller
     public function addProductForm()    {
         // $products = Product::with('category')->get();
         $categories= Category::all();
-        $url = url('/add-product');
-        $title ='Add Product';
-        $submit = 'Add Product';
-
-        return view('admin.addProduct',compact('categories','url','title','submit'));
+        $submit = "Add Product";
+        return view('admin.addProduct',compact('categories','submit'));
     }
 
     public function addProduct(Request $request){
@@ -125,10 +118,6 @@ class AdminController extends Controller
         if($result){
             return redirect('/show-product');
         }
-
-
-        // echo "<pre>";
-        // print_r($request->toArray());
     }
 
     public function showProduct(){
@@ -150,12 +139,10 @@ class AdminController extends Controller
     public function editProduct($id){
         $product = Product::with('category')->where('product_id',$id)->first();
         $categories = Category::all();
-        // $url= url('/update-product').'/'.$id;
-        // $title = 'Edit Product';
-        // $submit = 'Update';
+        $submit = "Update";
         if($product){
 
-            return view('admin.editProduct',compact('product','categories'));
+            return view('admin.editProduct',compact('product','categories','submit'));
         }
         else{
             return redirect('/show-product')->with('fail','The id you provided are not in database.');
@@ -199,7 +186,5 @@ class AdminController extends Controller
             return redirect('/show-product')->with('success','Product Updated Succesfully.');
 
         }
-        // echo "<pre>";
-        // print_r($request->toArray());
     }
 }

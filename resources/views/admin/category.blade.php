@@ -14,14 +14,11 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            @php
-            if(!isset($category))
-             echo '<div class="row">
-                <div class="col-lg-6 grid-margin stretch-card">';
-            @endphp    
+           <div class="row">
+                <div class="col-lg-6 grid-margin stretch-card">   
                   <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">{{$title}}</h4>
+                          <h4 class="card-title">Add Category</h4>
                           @if(session()->has('success'))
                           <span class="alert alert-success">
 
@@ -41,36 +38,21 @@
 
                           @endif
                           <!-- <p class="card-description"> Basic form layout </p> -->
+                      {!! Form::model([
+                        'route'=>'add.category',
+                        'class'=>'forms-control',
+                        'method'=>'POST'
+                        ]) !!}
+                          @include('admin.categoryForm')
 
-                          {!! Form::open([
-                            'url'=> $url,
-                            'class'=>'forms-control',
-                            'method'=>'POST'
-                            ]) !!}
-                          <!-- <form action="{{ route('add.category') }}" class="forms-sample" method="POST"> -->
-                          
-                            <div class="form-group">
-                              {!! Form::label('','Category Name') !!}
-                              {!! Form::text('category_name',isset($category) ? $category->category_name: '' ,['class'=>'form-control', 'style'=>'color:white;background:black','placeholder'=>'Fruits, Vegitables, etc...']) !!}
-                             
-                            </div>
-                            @error('category_name')
-                              <span class="alert alert-warning">
-                                  {{$message}}
-                                  </span><br><br>
-                            @enderror
-                        
-
-                            {!! Form::submit($submit,['class'=>'btn btn-primary mr-2']) !!}
                           {!! Form::close() !!}
                         </div>
                       </div>
-                      @if(!isset($category))
+                     
                     </div>
-                    @endif
 
                       <!-- Table -->
-                      @if(!isset($category))
+                     
                 <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
@@ -107,11 +89,8 @@
                       </div>
                     </div>
                   </div>
-                  @if(!isset($category))
                 </div>
-            @endif
-            @endif
-                      <!-- Table End -->
+            <!-- Table End -->
                 
         </div>
       </div>

@@ -16,7 +16,7 @@
           <div class="content-wrapper">
             <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">{{$title}}</h4>
+                          <h4 class="card-title">Add Product</h4>
                           @if(session()->has('success'))
                           <span class="alert alert-success">
                             {{session('success')}}

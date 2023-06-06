@@ -11,4 +11,8 @@ class {{ class }} extends Controller
         return view('');
     }
     
+   // public function update(Request $request){
+      //  echo "<pre>";
+       // print_r($request->toArray)
+   // }
 }
