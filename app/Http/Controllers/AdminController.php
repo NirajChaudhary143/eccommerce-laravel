@@ -91,17 +91,19 @@ class AdminController extends Controller
         $categories= Category::all();
         $url = url('/add-product');
         $title ='Add Product';
-        return view('admin.addProduct',compact('categories','url','title'));
+        $submit = 'Add Product';
+
+        return view('admin.addProduct',compact('categories','url','title','submit'));
     }
 
     public function addProduct(Request $request){
         $request->validate([
-            'product_title'=>'required',
-            'description'=>'required',
+            'product_title' => ['required', 'not_regex:/^[0-9]+$/'],
+            'description'=>['required', 'not_regex:/^[0-9]+$/'],
             'product_quantity'=>'required',
             
             'product_category'=>'required',
-            'product_price'=>'required',
+            'product_price'=>['required', 'regex:/^[0-9]+$/'],
             'image'=>'required|image|mimes:jpeg,jpg,png',
         ]);
 
@@ -148,11 +150,12 @@ class AdminController extends Controller
     public function editProduct($id){
         $product = Product::with('category')->where('product_id',$id)->first();
         $categories = Category::all();
-        $url= url('/update-product').'/'.$id;
-        $title = 'Edit Product';
+        // $url= url('/update-product').'/'.$id;
+        // $title = 'Edit Product';
+        // $submit = 'Update';
         if($product){
 
-            return view('admin.addProduct',compact('product','categories','url','title'));
+            return view('admin.editProduct',compact('product','categories'));
         }
         else{
             return redirect('/show-product')->with('fail','The id you provided are not in database.');
@@ -162,12 +165,12 @@ class AdminController extends Controller
 
     public function updateProduct(Request $request,$id){
         $request->validate([
-            'product_title'=>'required',
-            'description'=>'required',
+            'product_title'=>['required', 'not_regex:/^[0-9]+$/'],
+            'description'=>['required', 'not_regex:/^[0-9]+$/'],
             'product_quantity'=>'required',
             
             'product_category'=>'required',
-            'product_price'=>'required',
+            'product_price'=>['required', 'regex:/^[0-9]+$/'],
             
         ]);
 

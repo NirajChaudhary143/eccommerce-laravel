@@ -14,34 +14,32 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="card">
+                  <div class="card">
                         <div class="card-body">
-                          <h4 class="card-title">{{$title}}</h4>
+                          <h4 class="card-title">Edit Product</h4>
                           @if(session()->has('success'))
                           <span class="alert alert-success">
                             {{session('success')}}
-                          </span>
+                        </span>
                           <br><br>
                           @endif
                           @if(session()->has('fail'))
                           <span class="alert alert-warning">
                             {{session('fail')}}
-                          </span>
+                            </span>
                           <br><br>
                           @endif
-
-                            {!! Form::model([
-                            'route'=>'add.product',
+        {!! Form::model($product,[
+                            'route'=>['update.product',$product->product_id],
                             'class'=>'forms-control',
                             'mehtod'=>'post',
                             'enctype'=>'multipart/form-data'
                             ]) !!}
-                        
-                         
-                           @include('admin.productForm')
 
-                           {!! Form::close() !!}
-                        </div>
+    @include('admin.productForm')
+    
+    {!! Form::close() !!}
+                     </div>         
         </div>
       </div>
     <!-- container-scroller -->
