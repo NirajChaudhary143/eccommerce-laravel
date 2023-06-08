@@ -18,14 +18,11 @@
                         <div class="card">
                                 <div class="card-body">
                                 <h4 class="card-title">Edit Category</h4>
-                                    {!! Form::model($category,[
-                                        'route'=>['update.category',$category->category_id],
-                                        'method'=>'post'
-                                        ]) !!}
+                                    
                                         
                                         @include('admin.categoryForm')
 
-                                    {!! Form::close() !!}
+                                    
 
                                 </div>
                         </div>

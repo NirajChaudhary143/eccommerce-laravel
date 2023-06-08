@@ -29,16 +29,10 @@
                             </span>
                           <br><br>
                           @endif
-        {!! Form::model($product,[
-                            'route'=>['update.product',$product->product_id],
-                            'class'=>'forms-control',
-                            'mehtod'=>'post',
-                            'enctype'=>'multipart/form-data'
-                            ]) !!}
+       
 
     @include('admin.productForm')
     
-    {!! Form::close() !!}
                      </div>         
         </div>
       </div>

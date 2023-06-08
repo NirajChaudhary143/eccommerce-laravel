@@ -30,17 +30,11 @@
                           <br><br>
                           @endif
 
-                            {!! Form::model([
-                            'route'=>'add.product',
-                            'class'=>'forms-control',
-                            'mehtod'=>'post',
-                            'enctype'=>'multipart/form-data'
-                            ]) !!}
+                          
                         
                          
                            @include('admin.productForm')
 
-                           {!! Form::close() !!}
                         </div>
         </div>
       </div>

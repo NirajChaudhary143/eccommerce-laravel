@@ -1,4 +1,21 @@
 
+                            @if(isset($product))
+                             {!! Form::model($product,[
+                            'route'=>['update.product',$product->product_id],
+                            'class'=>'forms-control',
+                            'mehtod'=>'post',
+                            'enctype'=>'multipart/form-data'
+                            ]) !!}
+                            @else
+
+                            {!! Form::model([
+                            'route'=>'add.product',
+                            'class'=>'forms-control',
+                            'mehtod'=>'post',
+                            'enctype'=>'multipart/form-data'
+                            ]) !!}
+                            @endif
+                            
                             <div class="form-group">
                                 {!! Form::label('','Title') !!}  
                                 {!! Form::text('product_title',null,[
@@ -88,5 +105,8 @@
                             @enderror
                         
                           {!! Form::submit($submit,['class'=>'btn btn-primary mr-2']) !!}
+
+    {!! Form::close() !!}
+
                         
                         

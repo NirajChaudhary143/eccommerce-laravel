@@ -38,14 +38,9 @@
 
                           @endif
                           <!-- <p class="card-description"> Basic form layout </p> -->
-                      {!! Form::model([
-                        'route'=>'add.category',
-                        'class'=>'forms-control',
-                        'method'=>'POST'
-                        ]) !!}
+                     
                           @include('admin.categoryForm')
 
-                          {!! Form::close() !!}
                         </div>
                       </div>
                      
